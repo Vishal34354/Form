@@ -1,0 +1,32 @@
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+}
+
+.container{
+    width:350px;
+    margin:auto;
+    margin-top:60px;
+    padding:20px;
+    background:white;
+    border-radius:8px;
+}
+
+input,select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:green;
+    color:white;
+    border:none;
+}
+
+#message{
+    font-weight:bold;
+}
