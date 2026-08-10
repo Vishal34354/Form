@@ -1,29 +1,51 @@
-document.getElementById("myForm").addEventListener("submit",function(e){
+document.getElementById("myForm").addEventListener("submit", async function(e) {
 
     e.preventDefault();
 
-    const data={
-        name:document.getElementById("name").value,
-        mobile:document.getElementById("mobile").value,
-        password:document.getElementById("password").value,
-        email:document.getElementById("email").value,
-        branch:document.getElementById("branch").value
+    const data = {
+        name: document.getElementById("name").value,
+        mobile: document.getElementById("mobile").value,
+        password: document.getElementById("password").value,
+        email: document.getElementById("email").value,
+        branch: document.getElementById("branch").value
     };
 
-    let message="";
+    if (data.name.trim() === "") {
+        document.getElementById("message").innerHTML = "Name Required";
+        return;
+    }
 
-    if(data.name.trim()=="")
-        message="Name Required";
-    else if(!/^\d{10}$/.test(data.mobile))
-        message="Invalid Mobile";
-    else if(data.password.length<6)
-        message="Password Too Short";
-    else if(!data.email.includes("@"))
-        message="Invalid Email";
-    else if(data.branch=="")
-        message="Select Branch";
-    else
-        message="Form Submitted Successfully";
+    if (!/^\d{10}$/.test(data.mobile)) {
+        document.getElementById("message").innerHTML = "Invalid Mobile";
+        return;
+    }
 
-    document.getElementById("message").innerHTML=message;
+    if (data.password.length < 6) {
+        document.getElementById("message").innerHTML = "Password Too Short";
+        return;
+    }
+
+    if (!data.email.includes("@")) {
+        document.getElementById("message").innerHTML = "Invalid Email";
+        return;
+    }
+
+    if (data.branch === "") {
+        document.getElementById("message").innerHTML = "Select Branch";
+        return;
+    }
+
+    const response = await fetch("/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    document.getElementById("message").innerHTML = result.message;
+
+    document.getElementById("myForm").reset();
 });
