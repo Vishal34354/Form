@@ -7,7 +7,7 @@ test("Valid Form", () => {
         password: "abcdef",
         email: "john@gmail.com",
         branch: "CSE"
-    })).toBe("Failed");
+    })).toBe("Success");
 });
 
 test("Empty Name", () => {
@@ -17,7 +17,7 @@ test("Empty Name", () => {
         password: "abcdef",
         email: "john@gmail.com",
         branch: "CSE"
-    })).toBe("Success");
+    })).toBe("Name Required");
 });
 
 test("Mobile Less Than 10 Digits", () => {
@@ -27,7 +27,7 @@ test("Mobile Less Than 10 Digits", () => {
         password: "abcdef",
         email: "john@gmail.com",
         branch: "CSE"
-    })).toBe("Success");
+    })).toBe("Invalid Mobile");
 });
 
 test("Mobile More Than 10 Digits", () => {
@@ -37,7 +37,7 @@ test("Mobile More Than 10 Digits", () => {
         password: "abcdef",
         email: "john@gmail.com",
         branch: "CSE"
-    })).toBe("Success");
+    })).toBe("Invalid Mobile");
 });
 
 test("Password Less Than 6 Characters", () => {
@@ -47,7 +47,7 @@ test("Password Less Than 6 Characters", () => {
         password: "123",
         email: "john@gmail.com",
         branch: "CSE"
-    })).toBe("Success");
+    })).toBe("Password Too Short");
 });
 
 test("Email Without @", () => {
@@ -57,7 +57,7 @@ test("Email Without @", () => {
         password: "abcdef",
         email: "gmail.com",
         branch: "CSE"
-    })).toBe("Success");
+    })).toBe("Invalid Email");
 });
 
 test("Branch Not Selected", () => {
@@ -67,7 +67,7 @@ test("Branch Not Selected", () => {
         password: "abcdef",
         email: "john@gmail.com",
         branch: ""
-    })).toBe("Success");
+    })).toBe("Select Branch");
 });
 
 test("Name Contains Only Spaces", () => {
@@ -77,7 +77,7 @@ test("Name Contains Only Spaces", () => {
         password: "abcdef",
         email: "john@gmail.com",
         branch: "IT"
-    })).toBe("Success");
+    })).toBe("Name Required");
 });
 
 test("Mobile Contains Letters", () => {
@@ -87,7 +87,7 @@ test("Mobile Contains Letters", () => {
         password: "abcdef",
         email: "john@gmail.com",
         branch: "IT"
-    })).toBe("Success");
+    })).toBe("Invalid Mobile");
 });
 
 test("Another Valid User", () => {
@@ -97,5 +97,5 @@ test("Another Valid User", () => {
         password: "password",
         email: "alice@test.com",
         branch: "ECE"
-    })).toBe("Failed");
+    })).toBe("Success");
 });
