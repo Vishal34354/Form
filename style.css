@@ -1,32 +1,71 @@
-body{
-    font-family:Arial;
-    background:#f4f4f4;
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.container{
-    width:350px;
-    margin:auto;
-    margin-top:60px;
-    padding:20px;
-    background:white;
-    border-radius:8px;
+.container {
+    width: 380px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-input,select{
-    width:100%;
-    padding:8px;
-    margin-top:5px;
-    margin-bottom:15px;
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
 }
 
-button{
-    width:100%;
-    padding:10px;
-    background:green;
-    color:white;
-    border:none;
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #444;
 }
 
-#message{
-    font-weight:bold;
+input,
+select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.4);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5568d8;
+}
+
+#message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
 }
