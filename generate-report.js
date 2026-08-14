@@ -1,96 +1,161 @@
 const fs = require("fs");
+const { execSync } = require("child_process");
 
-const results = JSON.parse(
-    fs.readFileSync("test-results.json", "utf8")
-);
-
-const students = JSON.parse(
+// Current student data
+const currentStudents = JSON.parse(
     fs.readFileSync("student.json", "utf8")
 );
 
-const total = results.numTotalTests;
-const passed = results.numPassedTests;
-const failed = results.numFailedTests;
+// Find the previous commit that changed student.json
+let previousStudents = [];
 
-const buildNumber = process.env.BUILD_NUMBER || "Local";
+try {
+    const previousCommit = execSync(
+        "git rev-list --max-count=1 HEAD^ -- student.json",
+        { encoding: "utf8" }
+    ).trim();
 
-const student = students.length > 0
-    ? students[students.length - 1]
-    : null;
+    if (previousCommit) {
+        const previousData = execSync(
+            `git show ${previousCommit}:student.json`,
+            { encoding: "utf8" }
+        );
 
+        previousStudents = JSON.parse(previousData);
+    }
+} catch (error) {
+    console.log("No previous student.json found. Treating all entries as new.");
+}
+
+// Compare entries using complete JSON content
+const newStudents = currentStudents.filter(currentStudent => {
+    return !previousStudents.some(previousStudent =>
+        JSON.stringify(previousStudent) === JSON.stringify(currentStudent)
+    );
+});
+
+console.log(`Total students: ${currentStudents.length}`);
+console.log(`Previous students: ${previousStudents.length}`);
+console.log(`New students: ${newStudents.length}`);
+
+// Tell Jenkins whether there is anything new
+fs.writeFileSync(
+    "new-students.json",
+    JSON.stringify(newStudents, null, 2)
+);
+
+// If there are no new students, don't create a new report
+if (newStudents.length === 0) {
+    console.log("No new student registrations found.");
+    process.exit(0);
+}
+
+// Generate report
 let report = "";
 
 report += "# 🚀 Jenkins Student Registration Report\n\n";
 
-report += "## Build Information\n\n";
+report += `## New Registrations: ${newStudents.length}\n\n`;
 
-report += "| Item | Result |\n";
-report += "|---|---|\n";
-report += `| Build | #${buildNumber} |\n`;
-report += `| Status | ${failed === 0 ? "✅ SUCCESS" : "❌ FAILED"} |\n`;
-report += `| Total Tests | ${total} |\n`;
-report += `| Passed | ${passed} |\n`;
-report += `| Failed | ${failed} |\n\n`;
+let validCount = 0;
+let invalidCount = 0;
 
-report += "---\n\n";
+newStudents.forEach((student, index) => {
 
-if (student) {
+    report += `## 👤 New Student ${index + 1}\n\n`;
 
-    let mobile = String(student.mobile || "");
+    report += `**Name:** ${student.name || "Not provided"}\n\n`;
 
-    let maskedMobile = mobile.length >= 4
-        ? "******" + mobile.slice(-4)
-        : "******";
+    report += `**Branch:** ${student.branch || "Not selected"}\n\n`;
 
-    report += "## 👤 Latest Student Registration\n\n";
+    report += `**Email:** ${student.email || "Not provided"}\n\n`;
 
-    report += `**Name:** ${student.name}\n\n`;
-    report += `**Branch:** ${student.branch}\n\n`;
-    report += `**Email:** ${student.email}\n\n`;
+    const mobile = String(student.mobile || "");
+
+    const maskedMobile =
+        mobile.length >= 4
+            ? "******" + mobile.slice(-4)
+            : "******";
+
     report += `**Mobile:** ${maskedMobile}\n\n`;
-    report += `**Password:** 🔒 Hidden\n\n`;
 
-} else {
+    report += "**Password:** 🔒 Hidden\n\n";
 
-    report += "## 👤 Latest Student Registration\n\n";
-    report += "No student registration data found.\n\n";
-}
+    report += "### Validation Feedback\n\n";
 
-report += "---\n\n";
+    let valid = true;
 
-report += "## 🧪 Automated Test Results\n\n";
+    // Name
+    if (student.name && student.name.trim() !== "") {
+        report += "✅ Name is present\n\n";
+    } else {
+        report += "❌ Name is empty\n\n";
+        valid = false;
+    }
 
-report += "| Test | Status |\n";
-report += "|---|---|\n";
+    // Mobile
+    if (/^\d{10}$/.test(mobile)) {
+        report += "✅ Mobile number has exactly 10 digits\n\n";
+    } else {
+        report += "❌ Mobile number must contain exactly 10 digits\n\n";
+        valid = false;
+    }
 
-results.testResults.forEach(file => {
+    // Email
+    if (
+        student.email &&
+        student.email.includes("@")
+    ) {
+        report += "✅ Email contains @\n\n";
+    } else {
+        report += "❌ Invalid email\n\n";
+        valid = false;
+    }
 
-    file.assertionResults.forEach(test => {
+    // Password
+    if (
+        student.password &&
+        student.password.length >= 6
+    ) {
+        report += "✅ Password has at least 6 characters\n\n";
+    } else {
+        report += "❌ Password must have at least 6 characters\n\n";
+        valid = false;
+    }
 
-        let status = test.status === "passed"
-            ? "✅ PASS"
-            : "❌ FAIL";
+    // Branch
+    if (student.branch && student.branch !== "") {
+        report += `✅ Branch selected: ${student.branch}\n\n`;
+    } else {
+        report += "❌ Branch not selected\n\n";
+        valid = false;
+    }
 
-        report += `| ${test.title} | ${status} |\n`;
-    });
+    if (valid) {
+        report += "### Result: ✅ VALID\n\n";
+        validCount++;
+    } else {
+        report += "### Result: ❌ INVALID\n\n";
+        invalidCount++;
+    }
 
+    report += "---\n\n";
 });
 
-report += "\n---\n\n";
+report += "## 📊 Summary\n\n";
 
-report += "## 📋 Final Feedback\n\n";
+report += "| Item | Count |\n";
+report += "|---|---:|\n";
+report += `| New Registrations | ${newStudents.length} |\n`;
+report += `| Valid | ${validCount} |\n`;
+report += `| Invalid | ${invalidCount} |\n\n`;
 
-if (failed === 0) {
-
-    report += "🎉 **All 10 automated validation tests passed successfully.**\n\n";
-    report += "The registration validation system is working correctly.\n";
-
+if (invalidCount === 0) {
+    report += "🎉 **All new registrations are valid.**\n";
 } else {
-
-    report += "⚠️ **Automated validation tests failed.**\n\n";
-    report += "Please check the failed tests before accepting the latest changes.\n";
+    report += "⚠️ **Some new registrations contain invalid data.**\n";
 }
 
 fs.writeFileSync("feedback.md", report);
 
-console.log("Professional feedback report generated.");
+console.log("Feedback report generated successfully.");
