@@ -20,35 +20,53 @@ pipeline {
     post {
 
         always {
-            bat 'node generate-report.js'
 
-            withCredentials([
-                usernamePassword(
-                    credentialsId: 'github-token',
-                    usernameVariable: 'GIT_USERNAME',
-                    passwordVariable: 'GIT_PASSWORD'
-                )
-            ]) {
+            bat '''
+                node generate-report.js
+            '''
 
-                bat '''
-                    git config user.name "Jenkins"
-                    git config user.email "jenkins@localhost"
+            script {
 
-                    git add feedback.md
+                def newStudents = readFile('new-students.json').trim()
 
-                    git diff --cached --quiet || git commit -m "Update automated test feedback report"
+                if (newStudents != "[]") {
 
-                    git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/Vishal34354/Form.git HEAD:main
-                '''
+                    echo "New student registrations detected."
+
+                    withCredentials([
+                        usernamePassword(
+                            credentialsId: 'github-token',
+                            usernameVariable: 'GIT_USERNAME',
+                            passwordVariable: 'GIT_PASSWORD'
+                        )
+                    ]) {
+
+                        bat '''
+                            git config user.name "Jenkins"
+                            git config user.email "jenkins@localhost"
+
+                            git add feedback.md
+
+                            git diff --cached --quiet || git commit -m "Update student registration feedback report"
+
+                            git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/Vishal34354/Form.git HEAD:main
+                        '''
+                    }
+
+                } else {
+
+                    echo "No new student registrations. No report update required."
+
+                }
             }
         }
 
         success {
-            echo 'All tests passed and feedback report pushed to GitHub!'
+            echo 'Tests completed successfully.'
         }
 
         failure {
-            echo 'Tests failed. Feedback report generated and pushed to GitHub.'
+            echo 'Tests failed.'
         }
     }
 }
