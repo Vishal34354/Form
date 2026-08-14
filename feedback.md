@@ -4,7 +4,7 @@
 
 | Item | Result |
 |---|---|
-| Build | #15 |
+| Build | #16 |
 | Status | ✅ SUCCESS |
 | Total Tests | 10 |
 | Passed | 10 |
@@ -14,13 +14,13 @@
 
 ## 👤 Latest Student Registration
 
-**Name:** Vishal Kumawat
+**Name:** Diya
 
 **Branch:** CSE
 
-**Email:** kumawatvishal321@gmail.com
+**Email:** diya4321@gmail.com
 
-**Mobile:** ******6289
+**Mobile:** ******8975
 
 **Password:** 🔒 Hidden
 
