@@ -1,56 +1,65 @@
 const fs = require("fs");
 const { execSync } = require("child_process");
 
-// Current student data
 const currentStudents = JSON.parse(
     fs.readFileSync("student.json", "utf8")
 );
 
-// Find the previous commit that changed student.json
 let previousStudents = [];
 
 try {
-    const previousCommit = execSync(
-        "git rev-list --max-count=1 HEAD^ -- student.json",
+    // Get student.json from the immediate parent commit
+    const previousData = execSync(
+        "git show HEAD^:student.json",
         { encoding: "utf8" }
-    ).trim();
+    );
 
-    if (previousCommit) {
-        const previousData = execSync(
-            `git show ${previousCommit}:student.json`,
-            { encoding: "utf8" }
-        );
+    previousStudents = JSON.parse(previousData);
 
-        previousStudents = JSON.parse(previousData);
-    }
 } catch (error) {
-    console.log("No previous student.json found. Treating all entries as new.");
+    console.log("No previous student.json found.");
+    console.log("Treating all current students as new.");
 }
 
-// Compare entries using complete JSON content
+// Find students that exist in current version but not previous version
 const newStudents = currentStudents.filter(currentStudent => {
-    return !previousStudents.some(previousStudent =>
-        JSON.stringify(previousStudent) === JSON.stringify(currentStudent)
-    );
+
+    return !previousStudents.some(previousStudent => {
+
+        return JSON.stringify(previousStudent) ===
+               JSON.stringify(currentStudent);
+
+    });
+
 });
 
-console.log(`Total students: ${currentStudents.length}`);
+console.log(`Current students: ${currentStudents.length}`);
 console.log(`Previous students: ${previousStudents.length}`);
 console.log(`New students: ${newStudents.length}`);
 
-// Tell Jenkins whether there is anything new
 fs.writeFileSync(
     "new-students.json",
     JSON.stringify(newStudents, null, 2)
 );
 
-// If there are no new students, don't create a new report
 if (newStudents.length === 0) {
+
     console.log("No new student registrations found.");
+
+    fs.writeFileSync(
+        "feedback.md",
+        "# Jenkins Student Registration Report\n\n" +
+        "No new student registrations were found in this build.\n"
+    );
+
     process.exit(0);
 }
 
-// Generate report
+
+// --------------------------------------------------
+// GENERATE REPORT
+// --------------------------------------------------
+
 let report = "";
 
 report += "# 🚀 Jenkins Student Registration Report\n\n";
@@ -59,6 +68,7 @@ report += `## New Registrations: ${newStudents.length}\n\n`;
 
 let validCount = 0;
 let invalidCount = 0;
+
 
 newStudents.forEach((student, index) => {
 
@@ -85,77 +95,139 @@ newStudents.forEach((student, index) => {
 
     let valid = true;
 
-    // Name
-    if (student.name && student.name.trim() !== "") {
+
+    // NAME
+    if (
+        student.name &&
+        student.name.trim() !== ""
+    ) {
+
         report += "✅ Name is present\n\n";
+
     } else {
+
         report += "❌ Name is empty\n\n";
+
         valid = false;
     }
 
-    // Mobile
+
+    // MOBILE
     if (/^\d{10}$/.test(mobile)) {
+
         report += "✅ Mobile number has exactly 10 digits\n\n";
+
     } else {
-        report += "❌ Mobile number must contain exactly 10 digits\n\n";
+
+        report +=
+            "❌ Mobile number must contain exactly 10 digits\n\n";
+
         valid = false;
     }
 
-    // Email
+
+    // EMAIL
     if (
         student.email &&
         student.email.includes("@")
     ) {
+
         report += "✅ Email contains @\n\n";
+
     } else {
+
         report += "❌ Invalid email\n\n";
+
         valid = false;
     }
 
-    // Password
+
+    // PASSWORD
     if (
         student.password &&
         student.password.length >= 6
     ) {
-        report += "✅ Password has at least 6 characters\n\n";
+
+        report +=
+            "✅ Password has at least 6 characters\n\n";
+
     } else {
-        report += "❌ Password must have at least 6 characters\n\n";
+
+        report +=
+            "❌ Password must have at least 6 characters\n\n";
+
         valid = false;
     }
 
-    // Branch
-    if (student.branch && student.branch !== "") {
-        report += `✅ Branch selected: ${student.branch}\n\n`;
+
+    // BRANCH
+    if (
+        student.branch &&
+        student.branch !== ""
+    ) {
+
+        report +=
+            `✅ Branch selected: ${student.branch}\n\n`;
+
     } else {
-        report += "❌ Branch not selected\n\n";
+
+        report +=
+            "❌ Branch not selected\n\n";
+
         valid = false;
     }
+
 
     if (valid) {
+
         report += "### Result: ✅ VALID\n\n";
+
         validCount++;
+
     } else {
+
         report += "### Result: ❌ INVALID\n\n";
+
         invalidCount++;
     }
 
     report += "---\n\n";
 });
 
+
+// --------------------------------------------------
+// SUMMARY
+// --------------------------------------------------
+
 report += "## 📊 Summary\n\n";
 
 report += "| Item | Count |\n";
 report += "|---|---:|\n";
+
 report += `| New Registrations | ${newStudents.length} |\n`;
+
 report += `| Valid | ${validCount} |\n`;
+
 report += `| Invalid | ${invalidCount} |\n\n`;
 
+
 if (invalidCount === 0) {
-    report += "🎉 **All new registrations are valid.**\n";
+
+    report +=
+        "🎉 **All new registrations are valid.**\n";
+
 } else {
-    report += "⚠️ **Some new registrations contain invalid data.**\n";
+
+    report +=
+        "⚠️ **Some new registrations contain invalid data.**\n";
 }
 
-fs.writeFileSync("feedback.md", report);
 
-console.log("Feedback report generated successfully.");
+fs.writeFileSync(
+    "feedback.md",
+    report
+);
+
+console.log(
+    "Feedback report generated successfully."
+);

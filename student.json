@@ -26,5 +26,12 @@
     "password": "123",
     "email": "nehagmail.com",
     "branch": "CSE"
-  }
+  },
+  {
+    "name": "Test Student",
+    "mobile": "9999999999",
+    "password": "testing123",
+    "email": "test@gmail.com",
+    "branch": "CSE"
+}
 ]
