@@ -13,25 +13,29 @@ console.log(`Current students: ${currentStudents.length}`);
 
 
 // ==================================================
-// 2. FIND PREVIOUS VERSION OF student.json
+// 2. READ PREVIOUS COMMIT'S student.json
 // ==================================================
 
 let previousStudents = [];
 
 try {
 
-    // Get the parent commit of the current Jenkins checkout
+    // Get the previous commit
     const parentCommit = execSync(
-        "git rev-parse HEAD^",
-        { encoding: "utf8" }
+        "git rev-parse HEAD~1",
+        {
+            encoding: "utf8"
+        }
     ).trim();
 
     console.log(`Previous commit: ${parentCommit}`);
 
-    // Check whether student.json existed in that commit
+    // Read student.json from the previous commit
     const previousFile = execSync(
         `git show ${parentCommit}:student.json`,
-        { encoding: "utf8" }
+        {
+            encoding: "utf8"
+        }
     );
 
     previousStudents = JSON.parse(previousFile);
@@ -126,6 +130,7 @@ let invalidCount = 0;
 newStudents.forEach((student, index) => {
 
     report += `## 👤 Student ${index + 1}\n\n`;
+
 
     // ----------------------------------------------
     // NAME
