@@ -5,19 +5,5 @@
     "password": "Vishal@123",
     "email": "kumawatvishal321@gmail.com",
     "branch": "CSE"
-  },
-  {
-    "name": "Ravi",
-    "mobile": "9582456582",
-    "password": "ravi@123",
-    "email": "ravi1232@gmail.com",
-    "branch": "ECE"
-  },
-  {
-    "name": "Diya",
-    "mobile": "5984568975",
-    "password": "diya@123",
-    "email": "diya4321@gmail.com",
-    "branch": "CSE"
   }
 ]
