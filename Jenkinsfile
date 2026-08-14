@@ -15,56 +15,61 @@ pipeline {
                 bat 'npm test'
             }
         }
+
+        stage('Generate Feedback Report') {
+            steps {
+                bat 'node generate-report.js'
+            }
+        }
+
+        stage('Push Feedback Report') {
+            steps {
+                script {
+
+                    def newStudents = readFile('new-students.json').trim()
+
+                    if (newStudents != "[]") {
+
+                        echo "New student registrations detected."
+
+                        withCredentials([
+                            usernamePassword(
+                                credentialsId: 'github-token',
+                                usernameVariable: 'GIT_USERNAME',
+                                passwordVariable: 'GIT_PASSWORD'
+                            )
+                        ]) {
+
+                            bat '''
+                                git config user.name "Jenkins"
+                                git config user.email "jenkins@localhost"
+
+                                git add feedback.md
+
+                                git diff --cached --quiet || git commit -m "Update student registration feedback report"
+
+                                git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/Vishal34354/Form.git HEAD:main
+                            '''
+                        }
+
+                    } else {
+
+                        echo "No new student registrations. No report update required."
+
+                    }
+                }
+            }
+        }
     }
 
     post {
 
-        always {
-
-            bat 'node generate-report.js'
-
-            script {
-
-                def newStudents = readFile('new-students.json').trim()
-
-                if (newStudents != "[]") {
-
-                    echo "New student registrations detected."
-
-                    withCredentials([
-                        usernamePassword(
-                            credentialsId: 'github-token',
-                            usernameVariable: 'GIT_USERNAME',
-                            passwordVariable: 'GIT_PASSWORD'
-                        )
-                    ]) {
-
-                        bat '''
-                            git config user.name "Jenkins"
-                            git config user.email "jenkins@localhost"
-
-                            git add feedback.md
-
-                            git diff --cached --quiet || git commit -m "Update student registration feedback report"
-
-                            git push https://%GIT_USERNAME%:%GIT_PASSWORD%@github.com/Vishal34354/Form.git HEAD:main
-                        '''
-                    }
-
-                } else {
-
-                    echo "No new student registrations. No report update required."
-
-                }
-            }
-        }
-
         success {
-            echo 'Tests completed successfully.'
+            echo 'Pipeline completed successfully.'
         }
 
         failure {
-            echo 'Tests failed.'
+            echo 'Pipeline failed.'
         }
     }
 }
