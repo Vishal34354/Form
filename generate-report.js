@@ -1,64 +1,111 @@
 const fs = require("fs");
 const { execSync } = require("child_process");
 
+// ==================================================
+// 1. READ CURRENT STUDENT DATA
+// ==================================================
+
 const currentStudents = JSON.parse(
     fs.readFileSync("student.json", "utf8")
 );
 
+console.log(`Current students: ${currentStudents.length}`);
+
+
+// ==================================================
+// 2. READ PREVIOUS COMMIT'S student.json
+// ==================================================
+
 let previousStudents = [];
 
 try {
-    // Get student.json from the immediate parent commit
-    const previousData = execSync(
-        "git show HEAD^:student.json",
-        { encoding: "utf8" }
+
+    const previousFile = execSync(
+        "git show HEAD~1:student.json",
+        {
+            encoding: "utf8"
+        }
     );
 
-    previousStudents = JSON.parse(previousData);
+    previousStudents = JSON.parse(previousFile);
 
 } catch (error) {
-    console.log("No previous student.json found.");
-    console.log("Treating all current students as new.");
+
+    console.log(
+        "Could not read student.json from previous commit."
+    );
+
+    process.exit(1);
 }
 
-// Find students that exist in current version but not previous version
+console.log(
+    `Previous students: ${previousStudents.length}`
+);
+
+
+// ==================================================
+// 3. FIND NEW STUDENTS
+// ==================================================
+//
+// A student is considered NEW if the complete student
+// object does not already exist in the previous commit.
+//
+// ==================================================
+
 const newStudents = currentStudents.filter(currentStudent => {
 
     return !previousStudents.some(previousStudent => {
 
-        return JSON.stringify(previousStudent) ===
-               JSON.stringify(currentStudent);
+        return (
+            currentStudent.name === previousStudent.name &&
+            currentStudent.mobile === previousStudent.mobile &&
+            currentStudent.email === previousStudent.email &&
+            currentStudent.branch === previousStudent.branch
+        );
 
     });
 
 });
 
-console.log(`Current students: ${currentStudents.length}`);
-console.log(`Previous students: ${previousStudents.length}`);
-console.log(`New students: ${newStudents.length}`);
 
-fs.writeFileSync(
-    "new-students.json",
-    JSON.stringify(newStudents, null, 2)
+console.log(
+    `New students: ${newStudents.length}`
 );
+
+
+// ==================================================
+// 4. NO NEW STUDENTS
+// ==================================================
 
 if (newStudents.length === 0) {
 
-    console.log("No new student registrations found.");
+    console.log(
+        "No new student registrations found."
+    );
 
+    // Keep an empty file so Jenkins can check it
     fs.writeFileSync(
-        "feedback.md",
-        "# Jenkins Student Registration Report\n\n" +
-        "No new student registrations were found in this build.\n"
+        "new-students.json",
+        "[]"
     );
 
     process.exit(0);
 }
 
 
-// --------------------------------------------------
-// GENERATE REPORT
-// --------------------------------------------------
+// ==================================================
+// 5. SAVE NEW STUDENTS
+// ==================================================
+
+fs.writeFileSync(
+    "new-students.json",
+    JSON.stringify(newStudents, null, 2)
+);
+
+
+// ==================================================
+// 6. GENERATE FEEDBACK REPORT
+// ==================================================
 
 let report = "";
 
@@ -66,21 +113,37 @@ report += "# 🚀 Jenkins Student Registration Report\n\n";
 
 report += `## New Registrations: ${newStudents.length}\n\n`;
 
+report += "---\n\n";
+
+
 let validCount = 0;
 let invalidCount = 0;
 
 
+// ==================================================
+// 7. VALIDATE EACH NEW STUDENT
+// ==================================================
+
 newStudents.forEach((student, index) => {
 
-    report += `## 👤 New Student ${index + 1}\n\n`;
+    report += `## 👤 Student ${index + 1}\n\n`;
 
-    report += `**Name:** ${student.name || "Not provided"}\n\n`;
+    // ----------------------------------------------
+    // NAME
+    // ----------------------------------------------
 
-    report += `**Branch:** ${student.branch || "Not selected"}\n\n`;
+    report += `**Name:** ${
+        student.name || "Not provided"
+    }\n\n`;
 
-    report += `**Email:** ${student.email || "Not provided"}\n\n`;
 
-    const mobile = String(student.mobile || "");
+    // ----------------------------------------------
+    // MOBILE
+    // ----------------------------------------------
+
+    const mobile = String(
+        student.mobile || ""
+    );
 
     const maskedMobile =
         mobile.length >= 4
@@ -89,33 +152,66 @@ newStudents.forEach((student, index) => {
 
     report += `**Mobile:** ${maskedMobile}\n\n`;
 
+
+    // ----------------------------------------------
+    // EMAIL
+    // ----------------------------------------------
+
+    report += `**Email:** ${
+        student.email || "Not provided"
+    }\n\n`;
+
+
+    // ----------------------------------------------
+    // BRANCH
+    // ----------------------------------------------
+
+    report += `**Branch:** ${
+        student.branch || "Not selected"
+    }\n\n`;
+
+
+    // ----------------------------------------------
+    // PASSWORD
+    // ----------------------------------------------
+
     report += "**Password:** 🔒 Hidden\n\n";
 
     report += "### Validation Feedback\n\n";
 
+
     let valid = true;
 
 
-    // NAME
+    // ==================================================
+    // NAME VALIDATION
+    // ==================================================
+
     if (
         student.name &&
         student.name.trim() !== ""
     ) {
 
-        report += "✅ Name is present\n\n";
+        report +=
+            "✅ Name is present\n\n";
 
     } else {
 
-        report += "❌ Name is empty\n\n";
+        report +=
+            "❌ Name is empty\n\n";
 
         valid = false;
     }
 
 
-    // MOBILE
+    // ==================================================
+    // MOBILE VALIDATION
+    // ==================================================
+
     if (/^\d{10}$/.test(mobile)) {
 
-        report += "✅ Mobile number has exactly 10 digits\n\n";
+        report +=
+            "✅ Mobile number contains exactly 10 digits\n\n";
 
     } else {
 
@@ -126,44 +222,57 @@ newStudents.forEach((student, index) => {
     }
 
 
-    // EMAIL
-    if (
-        student.email &&
-        student.email.includes("@")
-    ) {
+    // ==================================================
+    // PASSWORD VALIDATION
+    // ==================================================
 
-        report += "✅ Email contains @\n\n";
+    const password = String(
+        student.password || ""
+    );
+
+    if (password.length >= 6) {
+
+        report +=
+            "✅ Password contains at least 6 characters\n\n";
 
     } else {
 
-        report += "❌ Invalid email\n\n";
+        report +=
+            "❌ Password must contain at least 6 characters\n\n";
 
         valid = false;
     }
 
 
-    // PASSWORD
-    if (
-        student.password &&
-        student.password.length >= 6
-    ) {
+    // ==================================================
+    // EMAIL VALIDATION
+    // ==================================================
+
+    const email = String(
+        student.email || ""
+    );
+
+    if (email.includes("@")) {
 
         report +=
-            "✅ Password has at least 6 characters\n\n";
+            "✅ Email contains @\n\n";
 
     } else {
 
         report +=
-            "❌ Password must have at least 6 characters\n\n";
+            "❌ Email must contain @\n\n";
 
         valid = false;
     }
 
 
-    // BRANCH
+    // ==================================================
+    // BRANCH VALIDATION
+    // ==================================================
+
     if (
         student.branch &&
-        student.branch !== ""
+        student.branch.trim() !== ""
     ) {
 
         report +=
@@ -172,56 +281,74 @@ newStudents.forEach((student, index) => {
     } else {
 
         report +=
-            "❌ Branch not selected\n\n";
+            "❌ Branch is not selected\n\n";
 
         valid = false;
     }
 
 
+    // ==================================================
+    // RESULT
+    // ==================================================
+
     if (valid) {
 
-        report += "### Result: ✅ VALID\n\n";
+        report +=
+            "### Result: ✅ VALID REGISTRATION\n\n";
 
         validCount++;
 
     } else {
 
-        report += "### Result: ❌ INVALID\n\n";
+        report +=
+            "### Result: ❌ INVALID REGISTRATION\n\n";
 
         invalidCount++;
     }
 
+
     report += "---\n\n";
+
 });
 
 
-// --------------------------------------------------
-// SUMMARY
-// --------------------------------------------------
+// ==================================================
+// 8. SUMMARY
+// ==================================================
 
-report += "## 📊 Summary\n\n";
+report += "# 📊 Summary\n\n";
 
 report += "| Item | Count |\n";
 report += "|---|---:|\n";
 
-report += `| New Registrations | ${newStudents.length} |\n`;
+report +=
+    `| New Registrations | ${newStudents.length} |\n`;
 
-report += `| Valid | ${validCount} |\n`;
+report +=
+    `| Valid Registrations | ${validCount} |\n`;
 
-report += `| Invalid | ${invalidCount} |\n\n`;
+report +=
+    `| Invalid Registrations | ${invalidCount} |\n\n`;
 
 
 if (invalidCount === 0) {
 
     report +=
-        "🎉 **All new registrations are valid.**\n";
+        "## 🎉 All new registrations are valid!\n";
 
 } else {
 
     report +=
-        "⚠️ **Some new registrations contain invalid data.**\n";
+        "## ⚠️ Some new registrations contain errors.\n\n";
+
+    report +=
+        "Please review the validation feedback above.\n";
 }
 
+
+// ==================================================
+// 9. WRITE REPORT
+// ==================================================
 
 fs.writeFileSync(
     "feedback.md",
