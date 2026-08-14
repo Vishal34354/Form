@@ -1,50 +1,43 @@
 # 🚀 Jenkins Student Registration Report
 
-## Build Information
-
-| Item | Result |
-|---|---|
-| Build | #19 |
-| Status | ✅ SUCCESS |
-| Total Tests | 10 |
-| Passed | 10 |
-| Failed | 0 |
+## New Registrations: 1
 
 ---
 
-## 👤 Latest Student Registration
+## 👤 Student 1
 
-**Name:** Vishal Kumawat
+**Name:** Priya
+
+**Mobile:** ******1234
+
+**Email:** priya@gmail.com
 
 **Branch:** CSE
 
-**Email:** kumawatvishal321@gmail.com
-
-**Mobile:** ******6289
-
 **Password:** 🔒 Hidden
 
----
+### Validation Feedback
 
-## 🧪 Automated Test Results
+✅ Name is present
 
-| Test | Status |
-|---|---|
-| Valid Form | ✅ PASS |
-| Empty Name | ✅ PASS |
-| Mobile Less Than 10 Digits | ✅ PASS |
-| Mobile More Than 10 Digits | ✅ PASS |
-| Password Less Than 6 Characters | ✅ PASS |
-| Email Without @ | ✅ PASS |
-| Branch Not Selected | ✅ PASS |
-| Name Contains Only Spaces | ✅ PASS |
-| Mobile Contains Letters | ✅ PASS |
-| Another Valid User | ✅ PASS |
+✅ Mobile number contains exactly 10 digits
+
+✅ Password contains at least 6 characters
+
+✅ Email contains @
+
+✅ Branch selected: CSE
+
+### Result: ✅ VALID REGISTRATION
 
 ---
 
-## 📋 Final Feedback
+# 📊 Summary
 
-🎉 **All 10 automated validation tests passed successfully.**
+| Item | Count |
+|---|---:|
+| New Registrations | 1 |
+| Valid Registrations | 1 |
+| Invalid Registrations | 0 |
 
-The registration validation system is working correctly.
+## 🎉 All new registrations are valid!
