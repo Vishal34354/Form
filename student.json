@@ -768,5 +768,12 @@
     "password": "testing123",
     "email": "automation@gmail.com",
     "branch": "CSE"
+},
+{
+    "name": "New Jenkins Student",
+    "mobile": "9000000011",
+    "password": "jenkins123",
+    "email": "jenkinsstudent@gmail.com",
+    "branch": "IT"
 }
 ]
