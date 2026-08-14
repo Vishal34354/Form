@@ -761,5 +761,12 @@
     "password": "testing123",
     "email": "newstudent@gmail.com",
     "branch": "CSE"
+},
+{
+    "name": "Automation Test",
+    "mobile": "9000000002",
+    "password": "testing123",
+    "email": "automation@gmail.com",
+    "branch": "CSE"
 }
 ]
