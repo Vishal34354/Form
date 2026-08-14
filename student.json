@@ -47,5 +47,12 @@
     "password": "suresh123",
     "email": "suresh@gmail.com",
     "branch": "IT"
+},
+{
+    "name": "Priya",
+    "mobile": "9876501234",
+    "password": "priya123",
+    "email": "priya@gmail.com",
+    "branch": "CSE"
 }
 ]
