@@ -6,13 +6,13 @@
 
 ## 👤 Student 1
 
-**Name:** Priya
+**Name:** Suresh
 
-**Mobile:** ******1234
+**Mobile:** ******5678
 
-**Email:** priya@gmail.com
+**Email:** suresh@gmail.com
 
-**Branch:** CSE
+**Branch:** IT
 
 **Password:** 🔒 Hidden
 
@@ -26,7 +26,7 @@
 
 ✅ Email contains @
 
-✅ Branch selected: CSE
+✅ Branch selected: IT
 
 ### Result: ✅ VALID REGISTRATION
 
