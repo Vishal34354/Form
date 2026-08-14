@@ -1,9 +1,30 @@
 [
   {
-    "name": "Vishal Kumawat",
-    "mobile": "9680866289",
-    "password": "Vishal@123",
-    "email": "kumawatvishal321@gmail.com",
+    "name": "Vishal",
+    "mobile": "9876543210",
+    "password": "123456",
+    "email": "vishal@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Rahul",
+    "mobile": "9876543211",
+    "password": "abcdef",
+    "email": "rahul@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Amit",
+    "mobile": "9999999999",
+    "password": "password",
+    "email": "amit@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Neha",
+    "mobile": "8888888888",
+    "password": "123",
+    "email": "nehagmail.com",
     "branch": "CSE"
   }
 ]
