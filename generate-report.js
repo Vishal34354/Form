@@ -13,18 +13,25 @@ console.log(`Current students: ${currentStudents.length}`);
 
 
 // ==================================================
-// 2. READ PREVIOUS COMMIT'S student.json
+// 2. FIND PREVIOUS VERSION OF student.json
 // ==================================================
 
 let previousStudents = [];
 
 try {
 
+    // Get the parent commit of the current Jenkins checkout
+    const parentCommit = execSync(
+        "git rev-parse HEAD^",
+        { encoding: "utf8" }
+    ).trim();
+
+    console.log(`Previous commit: ${parentCommit}`);
+
+    // Check whether student.json existed in that commit
     const previousFile = execSync(
-        "git show HEAD~1:student.json",
-        {
-            encoding: "utf8"
-        }
+        `git show ${parentCommit}:student.json`,
+        { encoding: "utf8" }
     );
 
     previousStudents = JSON.parse(previousFile);
@@ -32,10 +39,10 @@ try {
 } catch (error) {
 
     console.log(
-        "Could not read student.json from previous commit."
+        "No previous student.json found. Treating all current students as new."
     );
 
-    process.exit(1);
+    previousStudents = [];
 }
 
 console.log(
@@ -45,11 +52,6 @@ console.log(
 
 // ==================================================
 // 3. FIND NEW STUDENTS
-// ==================================================
-//
-// A student is considered NEW if the complete student
-// object does not already exist in the previous commit.
-//
 // ==================================================
 
 const newStudents = currentStudents.filter(currentStudent => {
@@ -67,14 +69,23 @@ const newStudents = currentStudents.filter(currentStudent => {
 
 });
 
-
 console.log(
     `New students: ${newStudents.length}`
 );
 
 
 // ==================================================
-// 4. NO NEW STUDENTS
+// 4. SAVE NEW STUDENTS
+// ==================================================
+
+fs.writeFileSync(
+    "new-students.json",
+    JSON.stringify(newStudents, null, 2)
+);
+
+
+// ==================================================
+// 5. NO NEW STUDENTS
 // ==================================================
 
 if (newStudents.length === 0) {
@@ -83,24 +94,8 @@ if (newStudents.length === 0) {
         "No new student registrations found."
     );
 
-    // Keep an empty file so Jenkins can check it
-    fs.writeFileSync(
-        "new-students.json",
-        "[]"
-    );
-
     process.exit(0);
 }
-
-
-// ==================================================
-// 5. SAVE NEW STUDENTS
-// ==================================================
-
-fs.writeFileSync(
-    "new-students.json",
-    JSON.stringify(newStudents, null, 2)
-);
 
 
 // ==================================================
@@ -112,6 +107,10 @@ let report = "";
 report += "# 🚀 Jenkins Student Registration Report\n\n";
 
 report += `## New Registrations: ${newStudents.length}\n\n`;
+
+report += `- Current students: ${currentStudents.length}\n`;
+report += `- Previous students: ${previousStudents.length}\n`;
+report += `- New students: ${newStudents.length}\n\n`;
 
 report += "---\n\n";
 
