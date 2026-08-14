@@ -755,4 +755,11 @@
     "email": "farah@gmail.com",
     "branch": "ECE"
   }
+  {
+    "name": "Test New Student",
+    "mobile": "9000000001",
+    "password": "testing123",
+    "email": "newstudent@gmail.com",
+    "branch": "CSE"
+}
 ]
