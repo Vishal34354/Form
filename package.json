@@ -2,12 +2,10 @@
   "name": "form-validation",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest test.js"
+    "test": "jest test.js --json --outputFile=test-results.json"
   },
   "devDependencies": {
-    "jest": "^30.4.2"
-  },
-  "dependencies": {
-    "express": "^5.2.1"
+    "jest": "^30.0.0",
+    "express": "^5.1.0"
   }
 }

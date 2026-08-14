@@ -1,4 +1,5 @@
 pipeline {
+
     agent any
 
     stages {
@@ -14,13 +15,18 @@ pipeline {
                 bat 'npm test'
             }
         }
-
     }
 
     post {
+
+        always {
+            bat 'node generate-report.js'
+        }
+
         success {
             echo 'All tests passed!'
         }
+
         failure {
             echo 'Tests failed!'
         }
