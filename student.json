@@ -54,5 +54,705 @@
     "password": "priya123",
     "email": "priya@gmail.com",
     "branch": "CSE"
-}
+},
+  {
+    "name": "Aarush Mehta",
+    "mobile": "9100000001",
+    "password": "aarush123",
+    "email": "aarush@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Bhavya Sharma",
+    "mobile": "9100000002",
+    "password": "bhavya123",
+    "email": "bhavya@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Chirag Verma",
+    "mobile": "9100000003",
+    "password": "chirag123",
+    "email": "chirag@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Disha Kapoor",
+    "mobile": "9100000004",
+    "password": "disha123",
+    "email": "disha@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Eshan Gupta",
+    "mobile": "9100000005",
+    "password": "eshan123",
+    "email": "eshan@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Falak Jain",
+    "mobile": "9100000006",
+    "password": "falak123",
+    "email": "falak@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Girish Kumar",
+    "mobile": "9100000007",
+    "password": "girish123",
+    "email": "girish@gmail.com",
+    "branch": "ME"
+  },
+  {
+    "name": "Himanshi Rao",
+    "mobile": "9100000008",
+    "password": "himanshi123",
+    "email": "himanshi@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Ishan Patel",
+    "mobile": "9100000009",
+    "password": "ishan123",
+    "email": "ishan@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Jhanvi Singh",
+    "mobile": "9100000010",
+    "password": "jhanvi123",
+    "email": "jhanvi@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Kartik Yadav",
+    "mobile": "9100000011",
+    "password": "kartik123",
+    "email": "kartik@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Lavanya Joshi",
+    "mobile": "9100000012",
+    "password": "lavanya123",
+    "email": "lavanya@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Madhav Sharma",
+    "mobile": "9100000013",
+    "password": "madhav123",
+    "email": "madhav@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Navya Gupta",
+    "mobile": "9100000014",
+    "password": "navya123",
+    "email": "navya@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Omkar Verma",
+    "mobile": "9100000015",
+    "password": "omkar123",
+    "email": "omkar@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Pari Sharma",
+    "mobile": "9100000016",
+    "password": "pari12345",
+    "email": "pari@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Qasim Khan",
+    "mobile": "9100000017",
+    "password": "qasim123",
+    "email": "qasim@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Raghav Mehta",
+    "mobile": "9100000018",
+    "password": "raghav123",
+    "email": "raghav@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Saanvi Jain",
+    "mobile": "9100000019",
+    "password": "saanvi123",
+    "email": "saanvi@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Tanish Gupta",
+    "mobile": "9100000020",
+    "password": "tanish123",
+    "email": "tanish@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Urvi Patel",
+    "mobile": "9100000021",
+    "password": "urvi1234",
+    "email": "urvi@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Vedant Sharma",
+    "mobile": "9100000022",
+    "password": "vedant123",
+    "email": "vedant@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Wamiqa Singh",
+    "mobile": "9100000023",
+    "password": "wamiqa123",
+    "email": "wamiqa@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Yuvraj Kumar",
+    "mobile": "9100000024",
+    "password": "yuvraj123",
+    "email": "yuvraj@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Zoya Khan",
+    "mobile": "9100000025",
+    "password": "zoya12345",
+    "email": "zoya@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Abhay Mishra",
+    "mobile": "9100000026",
+    "password": "abhay123",
+    "email": "abhay@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Bhumika Rao",
+    "mobile": "9100000027",
+    "password": "bhumika123",
+    "email": "bhumika@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Chetan Agarwal",
+    "mobile": "9100000028",
+    "password": "chetan123",
+    "email": "chetan@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Damini Verma",
+    "mobile": "9100000029",
+    "password": "damini123",
+    "email": "damini@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Eklavya Singh",
+    "mobile": "9100000030",
+    "password": "eklavya123",
+    "email": "eklavya@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Fiza Khan",
+    "mobile": "9100000031",
+    "password": "fiza12345",
+    "email": "fiza@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Gautam Joshi",
+    "mobile": "9100000032",
+    "password": "gautam123",
+    "email": "gautam@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Hiral Patel",
+    "mobile": "9100000033",
+    "password": "hiral123",
+    "email": "hiral@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Ira Sharma",
+    "mobile": "9100000034",
+    "password": "ira12345",
+    "email": "ira@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Jatin Mehta",
+    "mobile": "9100000035",
+    "password": "jatin123",
+    "email": "jatin@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Kashish Gupta",
+    "mobile": "9100000036",
+    "password": "kashish123",
+    "email": "kashish@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Lakshay Verma",
+    "mobile": "9100000037",
+    "password": "lakshay123",
+    "email": "lakshay@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Mahi Sharma",
+    "mobile": "9100000038",
+    "password": "mahi12345",
+    "email": "mahi@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Naman Jain",
+    "mobile": "9100000039",
+    "password": "naman123",
+    "email": "naman@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Ojas Gupta",
+    "mobile": "9100000040",
+    "password": "ojas12345",
+    "email": "ojas@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Prisha Singh",
+    "mobile": "9100000041",
+    "password": "prisha123",
+    "email": "prisha@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Rishabh Kumar",
+    "mobile": "9100000042",
+    "password": "rishabh123",
+    "email": "rishabh@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Saksham Jain",
+    "mobile": "9100000043",
+    "password": "saksham123",
+    "email": "saksham@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Tanya Mehta",
+    "mobile": "9100000044",
+    "password": "tanya1234",
+    "email": "tanya2@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Uday Sharma",
+    "mobile": "9100000045",
+    "password": "uday12345",
+    "email": "uday@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Vansh Gupta",
+    "mobile": "9100000046",
+    "password": "vansh123",
+    "email": "vansh@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Yashika Jain",
+    "mobile": "9100000047",
+    "password": "yashika123",
+    "email": "yashika@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Zubin Patel",
+    "mobile": "9100000048",
+    "password": "zubin123",
+    "email": "zubin@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Aditi Rao",
+    "mobile": "9100000049",
+    "password": "aditirao123",
+    "email": "aditirao@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Bharat Singh",
+    "mobile": "9100000050",
+    "password": "bharat123",
+    "email": "bharat@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Charu Mehta",
+    "mobile": "9100000051",
+    "password": "charu123",
+    "email": "charu@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Dheeraj Kumar",
+    "mobile": "9100000052",
+    "password": "dheeraj123",
+    "email": "dheeraj@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Ekta Sharma",
+    "mobile": "9100000053",
+    "password": "ekta12345",
+    "email": "ekta@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Farhan Khan",
+    "mobile": "9100000054",
+    "password": "farhan123",
+    "email": "farhan@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Gauri Patel",
+    "mobile": "9100000055",
+    "password": "gauri123",
+    "email": "gauri@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Hitesh Verma",
+    "mobile": "9100000056",
+    "password": "hitesh123",
+    "email": "hitesh@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Ishani Jain",
+    "mobile": "9100000057",
+    "password": "ishani123",
+    "email": "ishani@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Jai Sharma",
+    "mobile": "9100000058",
+    "password": "jai12345",
+    "email": "jai@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Kriti Gupta",
+    "mobile": "9100000059",
+    "password": "kriti123",
+    "email": "kriti@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Lalit Singh",
+    "mobile": "9100000060",
+    "password": "lalit123",
+    "email": "lalit@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Mitali Sharma",
+    "mobile": "9100000061",
+    "password": "mitali123",
+    "email": "mitali@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Nakul Mehta",
+    "mobile": "9100000062",
+    "password": "nakul123",
+    "email": "nakul@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Oviya Patel",
+    "mobile": "9100000063",
+    "password": "oviya123",
+    "email": "oviya@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Piyush Kumar",
+    "mobile": "9100000064",
+    "password": "piyush123",
+    "email": "piyush@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Rhea Sharma",
+    "mobile": "9100000065",
+    "password": "rhea12345",
+    "email": "rhea@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Samar Gupta",
+    "mobile": "9100000066",
+    "password": "samar123",
+    "email": "samar@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Tushar Verma",
+    "mobile": "9100000067",
+    "password": "tushar123",
+    "email": "tushar@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Uma Singh",
+    "mobile": "9100000068",
+    "password": "uma12345",
+    "email": "uma@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Vikas Jain",
+    "mobile": "9100000069",
+    "password": "vikas123",
+    "email": "vikas@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Warda Khan",
+    "mobile": "9100000070",
+    "password": "warda123",
+    "email": "warda@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Aman Mehta",
+    "mobile": "9100000071",
+    "password": "amanmehta123",
+    "email": "amanmehta@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Bharti Gupta",
+    "mobile": "9100000072",
+    "password": "bharti123",
+    "email": "bharti@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Chetna Sharma",
+    "mobile": "9100000073",
+    "password": "chetna123",
+    "email": "chetna@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Darsh Patel",
+    "mobile": "9100000074",
+    "password": "darsh123",
+    "email": "darsh@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Esha Verma",
+    "mobile": "9100000075",
+    "password": "esha12345",
+    "email": "esha@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Faisal Khan",
+    "mobile": "9100000076",
+    "password": "faisal123",
+    "email": "faisal@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Gagan Sharma",
+    "mobile": "9100000077",
+    "password": "gagan123",
+    "email": "gagan@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Hina Gupta",
+    "mobile": "9100000078",
+    "password": "hina12345",
+    "email": "hina@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Imran Khan",
+    "mobile": "9100000079",
+    "password": "imran123",
+    "email": "imran@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Juhi Sharma",
+    "mobile": "9100000080",
+    "password": "juhi123",
+    "email": "juhi@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Kunal Verma",
+    "mobile": "9100000081",
+    "password": "kunalverma123",
+    "email": "kunalverma@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Lisha Jain",
+    "mobile": "9100000082",
+    "password": "lisha123",
+    "email": "lisha@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Manish Gupta",
+    "mobile": "9100000083",
+    "password": "manish123",
+    "email": "manish@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Niharika Singh",
+    "mobile": "9100000084",
+    "password": "niharika123",
+    "email": "niharika@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Ojasvi Sharma",
+    "mobile": "9100000085",
+    "password": "ojasvi123",
+    "email": "ojasvi@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Pratik Mehta",
+    "mobile": "9100000086",
+    "password": "pratik123",
+    "email": "pratik@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Ritu Gupta",
+    "mobile": "9100000087",
+    "password": "ritu987123",
+    "email": "ritu2@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Suresh Patel",
+    "mobile": "9100000088",
+    "password": "suresh123",
+    "email": "suresh2@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Tina Sharma",
+    "mobile": "9100000089",
+    "password": "tina12345",
+    "email": "tina@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Utsav Jain",
+    "mobile": "9100000090",
+    "password": "utsav123",
+    "email": "utsav@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Varsha Mehta",
+    "mobile": "9100000091",
+    "password": "varsha123",
+    "email": "varsha2@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Wasim Khan",
+    "mobile": "9100000092",
+    "password": "wasim123",
+    "email": "wasim@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Xavier Thomas",
+    "mobile": "9100000093",
+    "password": "xavier123",
+    "email": "xavier@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Yamini Rao",
+    "mobile": "9100000094",
+    "password": "yamini123",
+    "email": "yamini@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Zain Abbas",
+    "mobile": "9100000095",
+    "password": "zain12345",
+    "email": "zain@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Apoorva Singh",
+    "mobile": "9100000096",
+    "password": "apoorva123",
+    "email": "apoorva@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Bobby Sharma",
+    "mobile": "9100000097",
+    "password": "bobby123",
+    "email": "bobby@gmail.com",
+    "branch": "ECE"
+  },
+  {
+    "name": "Cyrus Mehta",
+    "mobile": "9100000098",
+    "password": "cyrus123",
+    "email": "cyrus@gmail.com",
+    "branch": "CSE"
+  },
+  {
+    "name": "Deepti Gupta",
+    "mobile": "9100000099",
+    "password": "deepti123",
+    "email": "deepti@gmail.com",
+    "branch": "IT"
+  },
+  {
+    "name": "Farah Khan",
+    "mobile": "9100000100",
+    "password": "farah123",
+    "email": "farah@gmail.com",
+    "branch": "ECE"
+  }
 ]
