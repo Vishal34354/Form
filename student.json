@@ -33,5 +33,12 @@
     "password": "testing123",
     "email": "test@gmail.com",
     "branch": "CSE"
+},
+{
+    "name": "Rohit",
+    "mobile": "9123456789",
+    "password": "rohit123",
+    "email": "rohit@gmail.com",
+    "branch": "ECE"
 }
 ]
