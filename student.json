@@ -1475,5 +1475,11 @@
     "password": "student100",
     "email": "raj100@example.com",
     "branch": "EE"
+  },{
+    "name": "",
+    "mobile": "",
+    "password": "",
+    "email": "",
+    "branch": ""
   }
 ]
