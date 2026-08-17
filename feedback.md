@@ -2,35 +2,35 @@
 
 ## New Registrations: 1
 
-- Current students: 212
-- Previous students: 211
+- Current students: 213
+- Previous students: 212
 - New students: 1
 
 ---
 
 ## 👤 Student 1
 
-**Name:** Not provided
+**Name:** Uttkash
 
-**Mobile:** ******
+**Mobile:** ******5862
 
-**Email:** Not provided
+**Email:** Uttkasuidrsk
 
-**Branch:** Not selected
+**Branch:** CSE
 
 **Password:** 🔒 Hidden
 
 ### Validation Feedback
 
-❌ Name is empty
+✅ Name is present
 
 ❌ Mobile number must contain exactly 10 digits
 
-❌ Password must contain at least 6 characters
+✅ Password contains at least 6 characters
 
 ❌ Email must contain @
 
-❌ Branch is not selected
+✅ Branch selected: CSE
 
 ### Result: ❌ INVALID REGISTRATION
 
