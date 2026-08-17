@@ -1481,5 +1481,12 @@
     "password": "",
     "email": "",
     "branch": ""
+  },
+  {
+    "name": "Uttkash",
+    "mobile": "95862",
+    "password": "Uttkarsh",
+    "email": "Uttkasuidrsk",
+    "branch": "CSE"
   }
 ]
